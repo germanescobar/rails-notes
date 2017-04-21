@@ -1,6 +1,6 @@
-# Tipos de Asociaciones
+# Asociaciones
 
-Las dos asociaciones se utilizan para definir relaciones entre tablas. Las asociaciones más comunes en bases de datos son:
+Las asociaciones se utilizan para definir relaciones entre tablas de una base de datos. Existen dos tipos de asociaciones que se pueden modelar en una base de datos relacional:
 
 * One to many (uno a muchos)
 * Many to many (muchos a muchos)
