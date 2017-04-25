@@ -166,7 +166,7 @@ $ rails c
 $ rails c
 > course = Course.first
 > student = Student.first
-> student << course
+> student.courses << course
 ```
 
 No es necesario volver a guardar el modelo. La última línea hace el INSERT en la tabla intermedia. Lo podemos hacer al revés (relacionar el curso al estudiante) y tendríamos el mismo resultado.
@@ -175,7 +175,7 @@ No es necesario volver a guardar el modelo. La última línea hace el INSERT en 
 $ rails c
 > course = Course.first
 > student = Student.first
-> student << course
+> course.students << student
 ```
 
 Si estamos creando un estudiante y queremos asociarle de una vez algunos cursos podemos hacer lo siguiente:
