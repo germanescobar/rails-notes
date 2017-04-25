@@ -192,7 +192,7 @@ $ rails c
 $ rails c
 > course = Course.first
 > student = Student.first
-> course.delete(student)
+> course.students.delete(student)
 ```
 
 Acá estamos asumiendo esos dos registros están asociados, aunque si no lo están no ocurre ningún error, simplemente no cambia nada en la base de datos.
