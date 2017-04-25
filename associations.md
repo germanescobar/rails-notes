@@ -36,7 +36,7 @@ $ rails g model User name
 ```
 
 2. Crear el modelo que va a estar relacionado al anterior utilizando `references` para crear la referencia. Por ejemplo:
-``` 
+```
 $ rails g model Note user:references content:text
 ````
 El `user:references` crea la llave foránea (`user_id`) y le agrega el `belongs_to :user` a `Note`.
@@ -131,7 +131,7 @@ $ rails g model Student name
 ```
 
 2. Crear la tabla intermedia con una migración. Esta tabla no tiene un modelo relacionado:
-``` 
+```
 $ rails g migration create_join_table_courses_students course:references student:references
 ```
 
@@ -229,5 +229,63 @@ end
 class Enrollment < ApplicationRecord
   belongs_to :course
   belongs_to :student
+end
+```
+
+## Asociación polimórfica
+
+La asociación polimórfica es un tipo de asociación uno a muchos que se puede implementar en Ruby on Rails (en la base de datos no se puede implementar directamente) en donde una tabla puede estar asociada a muchas otras tablas.
+
+Imagina el caso de una aplicación que tiene preguntas y respuestas. Tanto las preguntas como las respuestas tienen comentarios. En vez de crear una tabla para los comentarios de las preguntas y otra para los comentarios de las respuestas, podemos crear una única tabla de comentarios que tenga los comentarios tanto de las preguntas como de las respuestas.
+
+La tabla de preguntas (`questions`) tendría la siguiente estructura:
+
+| id | text                |
+|----|---------------------|
+| 1  | ¿Qué es Ruby?       |
+| 2  | ¿Qué es JavaScript? |
+
+La tabla de respuestas (`answers`):
+
+| id | question_id | text                          |
+|----|-------------|-------------------------------|
+| 1  | 1           | Un lenguaje de programación   |
+| 2  | 2           | Otro lenguaje de programación |
+| 3  | 2           | No tengo ni idea              |
+
+La tabla de comentarios (`comments`) tendría la siguiente estructura
+
+| id | comentable_type | commentable_id | text                    |
+|----|-----------------|----------------|-------------------------|
+| 1  | Question        | 1              | Comentario a Question 1 |
+| 2  | Answer          | 1              | Comentario a Answer 1   |
+
+La tabla `comments` utiliza dos columnas para identificar la tabla y el id del registro al que va a estar relacionado cada registro.
+
+Para implementar esta asociación seguiríamos estos pasos:
+
+1. Crear los tres modelos. Por ejemplo:
+
+```
+$ rails g model Question text:text
+$ rails g model Answer question:references text:text
+$ rails g model Comment commentable:references{polymorphic} text:text
+```
+
+Fíjate que agregamos una referencia en `Comment` a `commentable`, que no es un modelo existente, es simplemente un nombre que le debemos dar a la relación.
+
+2. Agregar las relaciones en los modelos:
+
+```ruby
+class Question < ApplicationRecord
+  has_many :comments, as: :commentable
+end
+
+class Answer < ApplicationRecord
+  has_many :comments, as: :commentable
+end
+
+class Comment < ApplicationRecord
+  belongs_to :commentable, polymorphic: true
 end
 ```
