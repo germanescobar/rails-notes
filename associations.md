@@ -289,3 +289,25 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
 end
 ```
+
+## Ejercicios
+
+### Ejercicio 1
+
+Crear el diagrama de tablas y definir los modelos de una aplicación que le va a permitir a los usuarios que se registren publicar sus posts.
+
+El usuario tiene un email y password. Un post tiene un título y un texto. Los posts tienen comentarios. Un comentario tiene un texto y está relacionado a un post y un usuario.
+
+**Avanzado:** Es posible agregarle etiquetas (tags) a los posts. Se debe tener una lista de todas las etiquetas que han creado los usuarios.
+
+### Ejercicio 2
+
+Crear el diagrama de tablas y definir los modelos de una aplicación de preguntas y respuestas similar a StackOverflow que permita a los usuarios comentar sobre las preguntas y respuestas:
+
+* Una pregunta está asociada a un usuario y tiene un texto.
+* Una respuesta tiene un texto y está asociada a un usuario y una pregunta.
+* Los comentarios tienen un texto y están asociados a un usuario y a una pregunta o respuesta.
+
+Avanzado: Los usuarios pueden votar por las preguntas y respuestas. Se debe saber cuándo fue la fecha que se hizo cada voto.
+
+### Ejercicio 3
