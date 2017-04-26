@@ -302,6 +302,12 @@ El usuario tiene un email y password. Un post tiene un título y un texto. Los p
 
 ### Ejercicio 2
 
+Crear el diagrama de tablas y definir los modelos de una aplicación de alquiler de películas. Cada usuario tiene un usuario y una contraseña. Una película tiene un nombre, el año de lanzamiento y la cantidad de películas físicas disponibles. Un alquiler tiene una fecha de alquiler, una fecha de devolución y está asociado a un usuario y una película.
+
+**Avanzado:** Cada película está asociada a varias categorías. Una categoría tiene un nombre.
+
+### Ejercicio 3
+
 Crear el diagrama de tablas y definir los modelos de una aplicación de preguntas y respuestas similar a StackOverflow que permita a los usuarios comentar sobre las preguntas y respuestas:
 
 * Una pregunta está asociada a un usuario y tiene un texto.
@@ -309,5 +315,3 @@ Crear el diagrama de tablas y definir los modelos de una aplicación de pregunta
 * Los comentarios tienen un texto y están asociados a un usuario y a una pregunta o respuesta.
 
 Avanzado: Los usuarios pueden votar por las preguntas y respuestas. Se debe saber cuándo fue la fecha que se hizo cada voto.
-
-### Ejercicio 3
